@@ -88,6 +88,13 @@ a:hover {
     display: inline-block;
     margin-bottom: .8rem;
 }
+.button.clear {
+    display: inline-block;
+    color: #969cb3;
+}
+.button.clear:hover {
+    color: var(--red);
+}
 
 /* === HEADER =====*/
 
@@ -140,6 +147,10 @@ header {
 
 .card.total {
     background: var(--green);
+    color: #fff;
+}
+.card.negative {
+    background: var(--red);
     color: #fff;
 }
 

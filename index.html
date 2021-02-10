@@ -37,7 +37,7 @@
                 <p id="expenseDisplay"></p>
             </div>
 
-            <div class="card total">
+            <div class="card total" id="card-total">
                 <h3>
                     <span>Total</span>
                     <img src="./assets/total.svg" alt="Image de total">
@@ -57,7 +57,9 @@
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
-                        <th></th>
+                        <th>
+                            <a onclick="Storage.clearStorage()" href="#" class="button clear">Limpar Tudo</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody></tbody>

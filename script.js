@@ -13,6 +13,11 @@ const Storage = {
     },
     set(transactions) {
         localStorage.setItem('transactions', JSON.stringify(transactions));
+    },
+    clearStorage() {
+        localStorage.removeItem('transactions');
+        Transaction.all = [];
+        App.reload();
     }
 };
 
@@ -21,7 +26,7 @@ const Transaction = {
 
     add(transaction) {
         Transaction.all.push(transaction);
-        
+
         App.reload();
     },
 
@@ -61,6 +66,16 @@ const Transaction = {
 const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
+    backgroundTotalDisplay() {
+        if (Transaction.total() < 0) {
+            document.querySelector('#card-total').classList.add('negative');
+            document.querySelector('#card-total').classList.remove('total');
+        } else {
+            document.querySelector('#card-total').classList.add('total');
+            document.querySelector('#card-total').classList.remove('negative');
+        }
+    },
+
     addTransaction(transaction, index) {
         const tr = document.createElement('tr');
         tr.innerHTML = DOM.innerHTMLTransaction(transaction, index);
@@ -92,7 +107,9 @@ const DOM = {
         document.getElementById('incomeDisplay').innerHTML = Utils.formatCurrency(Transaction.incomes());
         document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(Transaction.expenses());
         document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(Transaction.total());
+        DOM.backgroundTotalDisplay();
     },
+
     clearTransactions() {
         DOM.transactionsContainer.innerHTML = "";
     }
